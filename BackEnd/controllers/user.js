@@ -55,20 +55,24 @@ const addUser = async (req, res) => {
     }
 };
 const loginUser = async (req, res) => {
-    try {
-        const { email, password } = req.body;
-        user.login(email, password, (err, result) => {
-            if (err) {
-                res.status(401).json({ message: 'Invalid credentials' });
-            } else {
-                // Here you can generate a token, set a session, or handle login success as needed
-                res.status(200).json({ message: 'Login successful', user: result });
-            }
-        });
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: 'Internal server error' });
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+        return res.status(400).send("Email and password are required");
     }
+
+    user.login(email, password, (err, success) => {
+        if (err) {
+            console.error("Login error:", err);
+            return res.status(500).send(err);
+        }
+
+        if (success) {
+            return res.status(200).json(success[0]);
+        } else {
+            return res.status(401).send("Login failed. Check your email and password.");
+        }
+    });
 };
 
 module.exports = { getUsers, getUserByEmail, addUser, loginUser };
