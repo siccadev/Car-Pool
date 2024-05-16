@@ -4,7 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 // import First from './Screens/First';
-import Signin from "./Screens/Signin"
+import Profile from "./Screens/Profile"
 const Stack = createStackNavigator();
 
 export default function App() {
@@ -12,7 +12,7 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator initialRouteName="First" screenOptions={{ headerShown: false }}>
 
-        <Stack.Screen name="Signin" component={Signin} />
+        <Stack.Screen name="Profile" component={Profile} />
       </Stack.Navigator>
     </NavigationContainer>
   );
