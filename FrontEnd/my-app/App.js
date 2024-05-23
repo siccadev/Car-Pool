@@ -3,8 +3,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-// import First from './Screens/First';
-import Profile from "./Screens/Profile"
+import Profile from './Screens/Profile';
+// import Profile from "./Screens/Profile"
 const Stack = createStackNavigator();
 
 export default function App() {

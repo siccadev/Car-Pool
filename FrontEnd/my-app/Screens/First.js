@@ -1,104 +1,83 @@
-import * as React from "react";
-import { Image } from "expo-image";
-import { StyleSheet, View, Text, Pressable, useWindowDimensions } from "react-native";
-import { useNavigation } from "@react-navigation/native";
-import { FontFamily, Color } from "../GlobalStyles";
+import React from 'react';
+import { View, TextInput, Button, StyleSheet, ScrollView, Picker, Text } from 'react-native';
 
-const Launch = () => {
-  const navigation = useNavigation();
-  const windowDimensions = useWindowDimensions();
-  const { width, height } = windowDimensions;
-
-  // Calculate styles dynamically based on window dimensions
-  const logoWrapperSize = {
-    width: width * 0.8,
-    aspectRatio: 1, // Maintain aspect ratio
-    alignSelf: "center",
-    position: "absolute",
-    top: height * 0.3,
-  };
-
-  const covoiturageStyle = {
-    top: height * 0.5,
-    fontSize: width * 0.1,
-    fontFamily: FontFamily.amitaRegular,
-    color: "#000",
-    textAlign: "center",
-  };
-
-  const bySiccadevStyle = {
-    top: height * 0.85,
-    fontSize: width * 0.04,
-    fontFamily: FontFamily.amikoRegular,
-    color: Color.colorWhite,
-    textAlign: "center",
-  };
-
-  const d9d65c23fc230581db1564ffa8f4e0IconStyle = {
-    top: height * 0.1,
-    width: width * 0.8,
-    aspectRatio: 1, // Maintain aspect ratio
-    alignSelf: "center",
-    position: "absolute",
-  };
-
+const EditProfile = () => {
   return (
-    <Pressable
-      style={[styles.launch, { height }]}
-      onPress={() => navigation.navigate("Welcome")}
-    >
-      <View style={logoWrapperSize}>
-        <Image
-          style={styles.logoIcon}
-          resizeMode="contain"
-          source={require("../assets/c.png")}
-        />
+    <ScrollView contentContainerStyle={styles.container}>
+      <TextInput style={styles.input} placeholder="Full name" />
+      <TextInput style={styles.input} placeholder="Nick name" />
+      <TextInput style={styles.input} placeholder="Label" />
+      <View style={styles.phoneContainer}>
+        <View style={styles.flag}>
+          <Text>🇹🇳</Text>
+        </View>
+        <TextInput style={styles.phoneInput} placeholder="+00216" keyboardType="phone-pad" />
       </View>
-      <Text style={[styles.covoiturage, styles.text, covoiturageStyle]}>
-        covoiturage
-      </Text>
-      <Text style={[styles.bySiccadev, styles.text, bySiccadevStyle]}>
-        By siccadev
-      </Text>
-      <Image
-        style={[styles.d9d65c23fc230581db1564ffa8f4e0Icon, d9d65c23fc230581db1564ffa8f4e0IconStyle]}
-        resizeMode="contain"
-        source={require("../assets/a.png")}
-      />
-    </Pressable>
+      <View style={styles.row}>
+        <Picker style={styles.picker}>
+          <Picker.Item label="Kef" value="Kef" />
+          {/* Add other country options here */}
+        </Picker>
+        <TextInput style={styles.input} placeholder="Genre" />
+      </View>
+      <TextInput style={styles.input} placeholder="Address" />
+      <Button title="SUBMIT" onPress={() => { /* Handle submit action */ }} color="#007bff" />
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
-  text: {
-    textAlign: "center",
-    position: "absolute",
+  container: {
+    flexGrow: 1,
+    padding: 20,
+    backgroundColor: 'white',
   },
-  logoIcon: {
-    width: "100%",
-    height: "100%",
-    
+  input: {
+    height: 40,
+    borderColor: '#ccc',
+    borderWidth: 1,
+    borderRadius: 5,
+    marginBottom: 15,
+    paddingHorizontal: 10,
   },
-  launch: {
-    backgroundColor: "#00b2ff",
-    width: "100%",
-    alignItems: "center",
+  phoneContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderColor: '#ccc',
+    borderWidth: 1,
+    borderRadius: 5,
+    marginBottom: 15,
   },
-  covoiturage: {
-    fontSize: 40, // Default value for fontSize
-    fontFamily: FontFamily.amitaRegular,
-    color: "#000",
+  flag: {
+    padding: 10,
   },
-  bySiccadev: {
-    fontSize: 16, // Default value for fontSize
-    fontFamily: FontFamily.amikoRegular,
-    color: Color.colorWhite,
+  phoneInput: {
+    flex: 1,
+    height: 40,
+    paddingHorizontal: 10,
   },
-  d9d65c23fc230581db1564ffa8f4e0Icon: {
-    width: "100%",
-    height: "100%",
-    
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 15,
+  },
+  picker: {
+    flex: 1,
+    height: 40,
+    borderColor: '#ccc',
+    borderWidth: 1,
+    borderRadius: 5,
+  },
+  submitButton: {
+    backgroundColor: '#007bff',
+    paddingVertical: 10,
+    borderRadius: 5,
+  },
+  submitButtonText: {
+    color: 'white',
+    textAlign: 'center',
+    fontSize: 16,
   },
 });
 
-export default Launch;
+export default EditProfile;
