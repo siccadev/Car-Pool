@@ -1,154 +1,255 @@
-import React, { useState } from 'react';
-import {
-  StyleSheet,
-  SafeAreaView,
-  View,
-  Text,
-  TouchableOpacity,
-  TextInput,
-} from 'react-native';
+import * as React from "react";
+import { Image } from "expo-image";
+import { StyleSheet, View, Text } from "react-native";
+import { Border, FontSize, FontFamily, Color } from "../GlobalStyles";
 
-export default function Example() {
-  const [form, setForm] = useState({
-    email: '',
-    password: '',
-  });
+const Welcome = () => {
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
-      <View style={styles.container}>
-        <View style={styles.header}>
-          <Text style={styles.title}>Welcome back!</Text>
-
-          <Text style={styles.subtitle}>Sign in to your account</Text>
-        </View>
-
-        <View style={styles.form}>
-          <View style={styles.input}>
-            <Text style={styles.inputLabel}>Email address</Text>
-
-            <TextInput
-              autoCapitalize="none"
-              autoCorrect={false}
-              clearButtonMode="while-editing"
-              keyboardType="email-address"
-              onChangeText={email => setForm({ ...form, email })}
-              placeholder="john@example.com"
-              placeholderTextColor="#6b7280"
-              style={styles.inputControl}
-              value={form.email} />
-          </View>
-
-          <View style={styles.input}>
-            <Text style={styles.inputLabel}>Password</Text>
-
-            <TextInput
-              autoCorrect={false}
-              clearButtonMode="while-editing"
-              onChangeText={password => setForm({ ...form, password })}
-              placeholder="********"
-              placeholderTextColor="#6b7280"
-              style={styles.inputControl}
-              secureTextEntry={true}
-              value={form.password} />
-          </View>
-
-          <View style={styles.formAction}>
-            <TouchableOpacity
-              onPress={() => {
-                // handle onPress
-              }}>
-              <View style={styles.btn}>
-                <Text style={styles.btnText}>Sign in</Text>
-              </View>
-            </TouchableOpacity>
-          </View>
-
-          <TouchableOpacity
-            onPress={() => {
-              // handle link
-            }}>
-            <Text style={styles.formFooter}>
-              Don't have an account?{' '}
-              <Text style={{ textDecorationLine: 'underline' }}>Sign up</Text>
-            </Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-    </SafeAreaView>
+    <View style={styles.welcome}>
+      <Image
+        style={styles.welcomeChild}
+        contentFit="cover"
+        source={require("../assets/b.png")}
+      />
+      <View style={styles.welcomeItem} />
+      <Text style={styles.signInTo}>Sign in to join</Text>
+      <View style={[styles.welcomeInner, styles.welcomeChildLayout]} />
+      <View style={[styles.rectangleView, styles.welcomeChildLayout]} />
+      <View style={[styles.welcomeChild1, styles.welcomeChildLayout]} />
+      <View style={[styles.welcomeChild2, styles.welcomeChildLayout]} />
+      <Image
+        style={[styles.rilockPasswordFillIcon, styles.iconLayout]}
+        contentFit="cover"
+        source={require("../assets/b.png")}
+      />
+      <Image
+        style={[styles.carbonemailIcon, styles.iconLayout]}
+        contentFit="cover"
+        source={require("../assets/c.png")}
+      />
+      <Text style={[styles.emailAddress, styles.passwordTypo]}>
+        Email Address
+      </Text>
+      <Text style={[styles.password, styles.passwordTypo]}>Password</Text>
+      <Text style={[styles.signUpWith, styles.passwordTypo]}>
+        Sign up with facebook
+      </Text>
+      <Text style={[styles.dontHaveAnContainer, styles.passwordTypo]}>
+        <Text style={styles.dontHaveAn}>{`Don't have an account? `}</Text>
+        <Text style={styles.signUp}>{`Sign Up
+`}</Text>
+      </Text>
+      <Text style={[styles.signIn, styles.orTypo]}>Sign in</Text>
+      <Text style={[styles.or, styles.orTypo]}>or</Text>
+      <Image
+        style={styles.vectorIcon}
+        contentFit="cover"
+        source={require("../assets/c.png")}
+      />
+      <View style={styles.carLogoWithCircleHandColo} />
+      <Image
+        style={styles.hyhhy1Icon}
+        contentFit="cover"
+        source={require("../assets/c.png")}
+      />
+    </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
-  container: {
-    padding: 24,
-    flexGrow: 1,
-    flexShrink: 1,
-    flexBasis: 0,
+  welcomeChildLayout: {
+    height: 45,
+    width: 315,
+    borderRadius: Border.br_11xl,
+    left: 57,
+    position: "absolute",
   },
-  header: {
-    marginVertical: 36,
+  iconLayout: {
+    height: 24,
+    width: 24,
+    left: 80,
+    position: "absolute",
+    overflow: "hidden",
   },
-  title: {
-    fontSize: 32,
-    fontWeight: 'bold',
-    color: '#1d1d1d',
-    marginBottom: 6,
-    textAlign: 'center',
+  passwordTypo: {
+    height: 17,
+    fontSize: FontSize.size_sm,
+    textAlign: "left",
+    position: "absolute",
   },
-  subtitle: {
-    fontSize: 15,
-    fontWeight: '500',
-    color: '#929292',
-    textAlign: 'center',
+  orTypo: {
+    textAlign: "center",
+    left: 160,
+    height: 17,
+    width: 109,
+    fontFamily: FontFamily.poppinsRegular,
+    fontSize: FontSize.size_sm,
+    position: "absolute",
   },
-  /** Form */
-  form: {
-    marginBottom: 24,
+  welcomeChild: {
+    top: -99,
+    left: -86,
+    width: 600,
+    height: 600,
+    position: "absolute",
   },
-  formAction: {
-    marginVertical: 24,
+  welcomeItem: {
+    top: 379,
+    left: 44,
+    shadowColor: "rgba(0, 0, 0, 0.25)",
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowRadius: 1,
+    elevation: 1,
+    shadowOpacity: 1,
+    borderRadius: 72,
+    width: 363,
+    height: 442,
+    position: "absolute",
+    backgroundColor: Color.colorWhite,
   },
-  formFooter: {
-    fontSize: 15,
-    fontWeight: '500',
-    color: '#222',
-    textAlign: 'center',
+  signInTo: {
+    top: 395,
+    left: 128,
+    fontSize: 24,
+    textAlign: "left",
+    fontFamily: FontFamily.poppinsSemiBold,
+    fontWeight: "600",
+    color: Color.colorSilver_100,
+    position: "absolute",
   },
-  /** Input */
-  input: {
-    marginBottom: 16,
-  },
-  inputLabel: {
-    fontSize: 17,
-    fontWeight: '600',
-    color: '#222',
-    marginBottom: 8,
-  },
-  inputControl: {
-    height: 44,
-    backgroundColor: '#f1f5f9',
-    paddingHorizontal: 16,
-    borderRadius: 12,
-    fontSize: 15,
-    fontWeight: '500',
-    color: '#222',
-  },
-  /** Button */
-  btn: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 8,
-    paddingVertical: 8,
-    paddingHorizontal: 16,
+  welcomeInner: {
+    top: 472,
     borderWidth: 1,
-    backgroundColor: '#007aff',
-    borderColor: '#007aff',
+    borderStyle: "solid",
+    height: 45,
+    width: 315,
+    borderRadius: Border.br_11xl,
+    left: 57,
+    borderColor: Color.colorSilver_100,
+    backgroundColor: Color.colorWhite,
   },
-  btnText: {
-    fontSize: 17,
-    lineHeight: 24,
-    fontWeight: '600',
-    color: '#fff',
+  rectangleView: {
+    top: 536,
+    borderWidth: 1,
+    borderStyle: "solid",
+    height: 45,
+    width: 315,
+    borderRadius: Border.br_11xl,
+    left: 57,
+    borderColor: Color.colorSilver_100,
+    backgroundColor: Color.colorWhite,
+  },
+  welcomeChild1: {
+    top: 600,
+    backgroundColor: Color.colorOrange,
+    borderColor: Color.colorOrange,
+    borderWidth: 1,
+    borderStyle: "solid",
+    height: 45,
+    width: 315,
+    borderRadius: Border.br_11xl,
+    left: 57,
+  },
+  welcomeChild2: {
+    top: 700,
+    backgroundColor: "#3a559f",
+    height: 45,
+    width: 315,
+    borderRadius: Border.br_11xl,
+    left: 57,
+  },
+  rilockPasswordFillIcon: {
+    top: 547,
+  },
+  carbonemailIcon: {
+    top: 483,
+  },
+  emailAddress: {
+    top: 486,
+    width: 109,
+    color: Color.colorSilver_200,
+    height: 17,
+    fontFamily: FontFamily.poppinsRegular,
+    fontSize: FontSize.size_sm,
+    left: 116,
+  },
+  password: {
+    top: 550,
+    width: 109,
+    color: Color.colorSilver_200,
+    height: 17,
+    fontFamily: FontFamily.poppinsRegular,
+    fontSize: FontSize.size_sm,
+    left: 116,
+  },
+  signUpWith: {
+    top: 714,
+    width: 159,
+    color: Color.colorWhite,
+    fontFamily: FontFamily.poppinsRegular,
+    left: 116,
+    height: 17,
+    fontSize: FontSize.size_sm,
+  },
+  dontHaveAn: {
+    color: Color.colorSilver_100,
+  },
+  signUp: {
+    color: "#ff0000",
+  },
+  dontHaveAnContainer: {
+    top: 835,
+    left: 98,
+    width: 255,
+    height: 17,
+    fontSize: FontSize.size_sm,
+    fontFamily: FontFamily.poppinsSemiBold,
+    fontWeight: "600",
+  },
+  signIn: {
+    top: 614,
+    color: Color.colorWhite,
+  },
+  or: {
+    top: 664,
+    color: Color.colorSilver_100,
+  },
+  vectorIcon: {
+    height: "2.16%",
+    width: "2.34%",
+    top: "77%",
+    right: "78.97%",
+    bottom: "20.84%",
+    left: "18.69%",
+    maxWidth: "100%",
+    maxHeight: "100%",
+    position: "absolute",
+    overflow: "hidden",
+  },
+  carLogoWithCircleHandColo: {
+    top: -47,
+    left: -27,
+    width: 469,
+    height: 284,
+    position: "absolute",
+  },
+  hyhhy1Icon: {
+    top: 18,
+    left: 0,
+    width: 421,
+    height: 300,
+    position: "absolute",
+  },
+  welcome: {
+    flex: 1,
+    width: "100%",
+    height: 926,
+    overflow: "hidden",
+    backgroundColor: Color.colorWhite,
   },
 });
+
+export default Welcome;
