@@ -4,7 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import Profile from './Screens/Profile';
-// import Profile from "./Screens/Profile"
+import First from './Screens/First';
 const Stack = createStackNavigator();
 
 export default function App() {
@@ -12,7 +12,8 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator initialRouteName="First" screenOptions={{ headerShown: false }}>
 
-        <Stack.Screen name="Profile" component={Profile} />
+        <Stack.Screen name="First" component={First} />
+        {/* <Stack.Screen name="Profile" component={Profile} /> */}
       </Stack.Navigator>
     </NavigationContainer>
   );
