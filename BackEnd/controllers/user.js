@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt');
 
-const user =require('../models/user')
+const user = require('../models/user')
 
 const getUsers = (req, res) => {
     user.getAll((err, result) => {
@@ -25,36 +25,29 @@ const getUserByEmail = (req, res) => {
         }
     });
 };
-const addUser = async (req, res) => {
-    try {
-        const { firstName, lastName, email, birth, password } = req.body;
+const register = async (req, res) => {
+    const { firstName, lastName, birth, email, password } = req.body;
 
-        // Hash the password before storing it
-        const hashedPassword = await bcrypt.hash(password, 10);
-
-        // Create a new user
-        const newUser = {
-            firstName:firstName,
-            lastName:lastName,
-            email:email,
-            birth:birth,
-            password: hashedPassword,
-            // role:'user'
-        };
-
-        await user.register(newUser, (err, result) => {
-            if (err) {
-                res.status(500).json({ error: 'Internal server error' });
-            } else {
-                res.status(201).json({ message: 'User registered successfully' });
-            }
-        });
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: 'Internal server error' });
+    if (!firstName || !lastName ||!birth || !email || !password) {
+        return res.status(400).send("firstName, lastName, birth, email, and password are required");
     }
+
+    const userData = { firstName, lastName, birth, email, password };
+
+    user.register(userData, (err, success) => {
+        if (err) {
+            return res.status(500).send(err);
+        }
+
+        if (success) {
+            return res.status(201).send("User registered successfully");
+        } else {
+            return res.status(400).send("Registration failed");
+        }
+    });
 };
-const loginUser = async (req, res) => {
+
+const login = async (req, res) => {
     const { email, password } = req.body;
 
     if (!email || !password) {
@@ -75,4 +68,4 @@ const loginUser = async (req, res) => {
     });
 };
 
-module.exports = { getUsers, getUserByEmail, addUser, loginUser };
+module.exports = { getUsers, getUserByEmail, register, login };
